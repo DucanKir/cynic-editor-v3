@@ -1,5 +1,7 @@
-import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+
+import './navbar.styles.scss';
 
 
 
@@ -15,13 +17,13 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>Циничный Редактор</div>
+      <div className="navbar">
+        <h3 className="header">Циничный Редактор</h3>
         <div></div>
         <div></div>
       </div>
-    )
+    );
   }
 }
 
-export default withRouter(Navbar)
+export default withRouter(Navbar);

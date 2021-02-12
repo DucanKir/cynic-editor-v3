@@ -3,6 +3,12 @@ import {connect } from 'react-redux';
 
 import {firestore, covertCollectionsSnapshotToMap} from '../../firebase/firebase.utils';
 import { updateImages } from '../../redux/images.actions';
+import LoadingScreen from '../loading-screen/loading-screen.component';
+import GameField from './game-field'
+
+import './game-container.scss'
+
+const GameFieldWithLoadingScreen = LoadingScreen(GameField)
 
 class GameContainer extends React.Component{ 
 
@@ -20,14 +26,19 @@ class GameContainer extends React.Component{
             const imagesMap = covertCollectionsSnapshotToMap(snapshot, 'backgrounds')
             console.log(imagesMap)
             updateImages(imagesMap)
-            this.setState({loading: false})
+            
         })
+    }
+
+    startGame = () => {
+        this.setState({loading: false})
     }
     
     render(){
+        const {loading} = this.state
         return(
-            <div>
-            
+            <div className="game-container">
+                <GameFieldWithLoadingScreen isLoading={loading} startGame={this.startGame}/>
             </div>
         )
     }

@@ -15,12 +15,7 @@ class Home extends React.Component {
 
   render(){
     return (
-      <div>
-        <div className="gamecontainer" >
-          <GameContainer />
-        </div>
-        
-      </div>
+        <GameContainer />
     )
   }
 }

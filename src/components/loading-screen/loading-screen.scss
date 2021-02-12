@@ -1,0 +1,51 @@
+.splashscreen {
+    background-image: url(https://s3.eu-west-2.amazonaws.com/cynic.game.images/Splashscreen.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 590px;
+    width: 1000px;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    .splashtext {
+        position: absolute;
+        top: 70%;
+        left: 40%;
+        font-size: 30px;
+      }
+      
+      .version {
+        font-size: 50px;
+        position: absolute;
+        top: 60%;
+        left: 75%;
+      }
+
+      .spoiler {
+        font-size: 12px;
+        position: absolute;
+        top: 62%;
+        left: 30%
+      }
+
+      .startButton {
+        position: absolute;
+        top: 70%;
+        left: 40%;
+        height: 45px;
+        width: 150px;
+        font-size: 30px;
+        background-color: white;
+        border: 3px solid black;
+        cursor: pointer;
+      }
+      
+  
+  }
+  
+  

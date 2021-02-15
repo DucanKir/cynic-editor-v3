@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import charactersReducer from './characters.reducer';
 
 import imagesReducer from './images.reducer';
 
@@ -13,7 +14,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    images: imagesReducer
+    collections: imagesReducer,
+    characters: charactersReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

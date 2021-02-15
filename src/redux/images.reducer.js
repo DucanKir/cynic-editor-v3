@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 };
 
 const imagesReducer = (state = INITIAL_STATE, action) =>  {
+
     switch(action.type) {
         case ImagesTypes.UPDATE_IMAGES:
             return {

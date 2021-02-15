@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect } from 'react-redux';
 
-import {firestore, covertCollectionsSnapshotToMap} from '../../firebase/firebase.utils';
+import {database} from '../../firebase/firebase.utils';
 import { updateImages } from '../../redux/images.actions';
 import LoadingScreen from '../loading-screen/loading-screen.component';
 import GameField from './game-field'
@@ -13,19 +13,17 @@ const GameFieldWithLoadingScreen = LoadingScreen(GameField)
 class GameContainer extends React.Component{ 
 
     state = {
-        loading: true
+        loading: true, //turned off
     }
 
     unsubscribeFromSnapshot = null;
-
+    
     componentDidMount(){
         const {updateImages} = this.props
-        const collectionRef = firestore.collection('backgrounds');
-        this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-            
-            const imagesMap = covertCollectionsSnapshotToMap(snapshot, 'backgrounds')
-            console.log(imagesMap)
-            updateImages(imagesMap)
+        const collectionRef = database.ref('images');
+        this.unsubscribeFromSnapshot = collectionRef.on("value", snapshot => {
+
+            updateImages(snapshot.val())
             
         })
     }
@@ -34,17 +32,22 @@ class GameContainer extends React.Component{
         this.setState({loading: false})
     }
     
+    
     render(){
         const {loading} = this.state
         return(
+            
             <div className="game-container">
                 <GameFieldWithLoadingScreen isLoading={loading} startGame={this.startGame}/>
             </div>
         )
     }
 }
+
+
 const mapDispatchToProps = dispatch => ({
     updateImages: imagesMap => dispatch(updateImages(imagesMap))
+    
 })
 
 export default connect(null, mapDispatchToProps)(GameContainer);

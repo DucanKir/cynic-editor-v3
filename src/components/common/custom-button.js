@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './control-panel.styles.scss';
+import './custom-button.styles.scss';
 
 const CustomButton = ({children}) => (
 

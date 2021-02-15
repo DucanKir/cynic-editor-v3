@@ -1,0 +1,15 @@
+.control-panel {
+    height: 40px;
+    margin: 0 auto;
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tooltip {
+    display: none;  /* Or display: none, depending on how you want it to behave */
+  }
+  
+  .tooltip-on-hover:hover + .tooltip {    /* Uses the adjacent sibling selector */
+    display: block;  /* Or display: block */
+  }

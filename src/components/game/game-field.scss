@@ -1,8 +1,12 @@
 .gamefield {
     height: 100%;
     width: 100%;
-    display: flex;
-    padding: 80px 30px;
+    padding: 70px 30px;
     margin-bottom: 0;
+    position: relative;
     
+    .container {
+        display: flex;
+        justify-content: center;
+    }
 }

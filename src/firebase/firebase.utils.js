@@ -1,16 +1,19 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import "firebase/database";
+
 
 
 const config = {
-    apiKey: "AIzaSyA1ez9INbzPEzIcJAfa3gEberAdEYF46QM",
-    authDomain: "cynic-editor-v3.firebaseapp.com",
-    projectId: "cynic-editor-v3",
-    storageBucket: "cynic-editor-v3.appspot.com",
-    messagingSenderId: "433934941310",
-    appId: "1:433934941310:web:a5ce9433b65b9a89e86c2f",
-    measurementId: "G-M36SFFD21F"
+  apiKey: "AIzaSyA1ez9INbzPEzIcJAfa3gEberAdEYF46QM",
+  authDomain: "cynic-editor-v3.firebaseapp.com",
+  databaseURL: "https://cynic-editor-v3-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "cynic-editor-v3",
+  storageBucket: "cynic-editor-v3.appspot.com",
+  messagingSenderId: "433934941310",
+  appId: "1:433934941310:web:a5ce9433b65b9a89e86c2f",
+  measurementId: "G-M36SFFD21F"
 }
 
 firebase.initializeApp(config);
@@ -51,6 +54,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 //   return await batch.commit()
 // }
 
+
+
 export const covertCollectionsSnapshotToMap = (images, title) => {
   const transformedCollection = images.docs.map(doc => {
     const {data, position, name} = doc.data();
@@ -67,6 +72,8 @@ export const covertCollectionsSnapshotToMap = (images, title) => {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const database = firebase.database();
+
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });

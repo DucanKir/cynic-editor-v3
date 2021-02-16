@@ -1,42 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectDefaultCharacter } from '../../redux/images.selector';
 import './character-container.styles.scss';
 import {createStructuredSelector} from 'reselect';
 import BodyPart from '../common/body-part';
-import { addCharacter,setCurrentCharacter } from '../../redux/characters.actions';
+import { addCharacter} from '../../redux/characters.actions';
 import { selectAllCharacters, selectCurrentCharacter } from '../../redux/characters.selector';
 
 class CharacterContainer extends React.Component {
     
     componentDidMount() {
-       const {defaultCharacter, setCurrentCharacter} = this.props
-        console.log(defaultCharacter)
-        setCurrentCharacter(defaultCharacter)
+        const { allCharacters, setDefaultCharacter} = this.props
+        console.log(allCharacters.length)
+        if (allCharacters.length == 0) {
+            console.log('DONE')
+            addCharacter()
+        }
     }
 
     render(){
-        const {defaultCharacter} =this.props
+        const {currentCharacter} =this.props
         return(
             <div className="character-container">
-                {/* {Object.keys(defaultCharacter).map(key =>
-                    <BodyPart data={defaultCharacter[key].data}/>
-                )} */}
-                
+                {Object.keys(currentCharacter).map(key => 
+                    key!=='id' ? <BodyPart key={currentCharacter[key].name} data={currentCharacter[key].data}/> : ''
+                )}
             </div>
         );
     }
-
 }
 
 const mapStateToProps = createStructuredSelector({
-    defaultCharacter: selectDefaultCharacter,
-    
-
+    currentCharacter: selectCurrentCharacter,
+    allCharacters: selectAllCharacters
 })
 
 const mapDispatchToProps = dispatch => ({
-    setCurrentCharacter: (character) => dispatch(setCurrentCharacter(character))
+    addCharacter: () => dispatch(addCharacter()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterContainer);

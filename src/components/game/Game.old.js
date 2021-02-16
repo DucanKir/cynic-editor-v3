@@ -310,7 +310,6 @@ class Game extends React.Component {
       this.setState({textHeight: this.refs.text.clientHeight})
 
     }
-    console.log()
   }
 
   toggleDropdown = () => {
@@ -568,7 +567,6 @@ class Game extends React.Component {
     const {deltaPosition, controlledPosition, backgrCount, backgrounds, characters, currentCharacter, addBkgr, gameStart, level, formData, textHeight, dropdownBtnText, showBgDropdown, showDropdown, faceButtonsText, eyes, mouths, brows, legs, hands, boobs, hair, clothes, hats, beards, glasses, masks} = this.state;
 
     if (!backgrounds[0] || !gameStart || characters === {}) {
-      console.log()
       return (
         <div className="gamefield">
           <div className='splashscreen'>

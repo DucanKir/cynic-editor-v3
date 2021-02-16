@@ -9,10 +9,8 @@ import { selectAllCharacters, selectCurrentCharacter } from '../../redux/charact
 class CharacterContainer extends React.Component {
     
     componentDidMount() {
-        const { allCharacters, setDefaultCharacter} = this.props
-        console.log(allCharacters.length)
+        const { allCharacters, addCharacter} = this.props
         if (allCharacters.length == 0) {
-            console.log('DONE')
             addCharacter()
         }
     }

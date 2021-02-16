@@ -1,8 +1,10 @@
 
 
 export const addCharacter = (characters, character) => {
-    characters.push(character)
-    return characters
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, characters)
+    newChars.push(character)
+    return newChars
 }
 
 export const addDefaultCharacter = (character, uuid) => {

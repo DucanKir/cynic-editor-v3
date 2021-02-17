@@ -7,19 +7,24 @@ import { addCharacter} from '../../redux/characters.actions';
 import { selectAllCharacters, selectCurrentCharacter } from '../../redux/characters.selector';
 
 class CharacterContainer extends React.Component {
+
+    state = {
+        isLoading: true
+    }
     
     componentDidMount() {
         const { allCharacters, addCharacter} = this.props
         if (allCharacters.length == 0) {
             addCharacter()
         }
+        this.setState({isLoading: false})
     }
 
     render(){
         const {currentCharacter} =this.props
         return(
             <div className="character-container">
-                {Object.keys(currentCharacter).map(key => 
+                {this.state.isLoading ? "Ща все будет" : Object.keys(currentCharacter).map(key => 
                     key!=='id' ? <BodyPart key={currentCharacter[key].name} data={currentCharacter[key].data}/> : ''
                 )}
             </div>

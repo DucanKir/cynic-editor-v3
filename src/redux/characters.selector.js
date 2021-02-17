@@ -7,8 +7,15 @@ export const selectAllCharacters = createSelector(
   characters => characters.allCharacters
 );
 export const selectCurrentCharacter = createSelector(
+
   [selectCharacters],
-  characters => characters.currentCharacter
+  characters => characters.allCharacters.find(char => char.id === characters.currentCharacterId)
+);
+
+export const selectCurrentCharacterId = createSelector(
+
+  [selectCharacters],
+  characters => characters.currentCharacterId
 );
 
 export const selectDefaultCharacter = createSelector(

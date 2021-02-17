@@ -1,5 +1,17 @@
 .characters-list {
     height: 600px;
     width: 100px;
-    background-color: hotpink;
+
+    .button{
+        width: 70px;
+        height: 70px;
+        background-size:280%;
+        background-position: -53px -45px;
+        border: 3px solid black;
+        margin: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

@@ -12,9 +12,9 @@ export const setDefaultCharacter = () => ({
     payload: uuidv4()
 })
 
-export const setCurrentCharacter = (character) => ({
+export const setCurrentCharacter = (id) => ({
     type: CharactersTypes.SET_CURRENT_CHARACTER,
-    payload: character
+    payload: id
 })
 
 export const addCharacter = () => ({

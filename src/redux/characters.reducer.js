@@ -1,5 +1,5 @@
 import CharactersTypes from './characters.types';
-import { addCharacter, addDefaultCharacter, removeCharacter, setPreviousCharacter } from './characters.utils';
+import { addCharacter, addDefaultCharacter, removeCharacter, setPreviousCharacter, addCurrentCharacter, replaceCharacter } from './characters.utils';
 
 const INITIAL_STATE = {
     defaultCharacter: {
@@ -35,7 +35,7 @@ const INITIAL_STATE = {
             position: 1
         }
     },
-    currentCharacter: {},
+    currentCharacterId: '',
     allCharacters:[]
 };
 
@@ -46,25 +46,31 @@ const charactersReducer = (state = INITIAL_STATE, action) =>  {
         case CharactersTypes.SET_CURRENT_CHARACTER:
             return {
                 ...state,
-                currentCharacter: action.payload
+                currentCharacterId: action.payload
             }
         case CharactersTypes.ADD_CHARACTER:
             return {
                 ...state,
                 allCharacters: addCharacter(state.allCharacters, newCharacter),
-                currentCharacter: newCharacter,
+                currentCharacterId: addCurrentCharacter(state.allCharacters, newCharacter.id, state.currentCharacterId)
             };
         case CharactersTypes.GET_DEFAULT_CHARACTER:
             return {
                 ...state,
-                currentCharacter: newCharacter,
+                currentCharacterId: newCharacter.id,
                 allCharacters: addCharacter(state.allCharacters, newCharacter),
             };
         case CharactersTypes.DELETE_CHARACTER:
             return {
                 ...state,
                 allCharacters: removeCharacter(state.allCharacters, action.payload),
-                currentCharacter: setPreviousCharacter(state.allCharacters, state.currentCharacter)
+                currentCharacterId: setPreviousCharacter(state.allCharacters, state.currentCharacterId)
+            };
+        case CharactersTypes.RESET_CHARACTER:
+            return {
+                ...state,
+                allCharacters: replaceCharacter(state.allCharacters, newCharacter, state.currentCharacterId),
+                currentCharacterId: newCharacter.id
             };
         default: 
             return state

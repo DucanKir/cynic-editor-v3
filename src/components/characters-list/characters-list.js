@@ -5,17 +5,19 @@ import {createStructuredSelector} from 'reselect';
 
 import './characters-list.styles.scss';
 import { setCurrentCharacter } from '../../redux/characters.actions';
+import EditorButton from '../common/editor-button';
 
 const CharactersList = ({allCharacters, setCurrentCharacter}) => {
-    console.log(allCharacters)
     return(
         <div className='characters-list'>
             {allCharacters.map(char =>
-                <img
+                <EditorButton 
+                    charList
                     onClick={() => setCurrentCharacter(char.id)}
                     key={char.id}
-                    className='button'
-                    src={`data:image/png;base64, ${char.head.data}`}
+                    url={char.head.data}
+                    url2={char.eyes.data}
+                    url3={char.mouths.data}
                 />
             )}
         </div>

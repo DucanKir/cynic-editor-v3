@@ -4,4 +4,7 @@
     width: 170px;
     display: flex;
     justify-content: space-between;
+    position: absolute;
+    left: 35%;
+    z-index: 9999;
 }

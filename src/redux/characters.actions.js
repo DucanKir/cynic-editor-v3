@@ -17,6 +17,11 @@ export const setCurrentCharacter = (id) => ({
     payload: id
 })
 
+export const updateCharacter = (bodyPart, nameOfBodypart) => ({
+    type: CharactersTypes.UPDATE_CHARACTER,
+    payload: [bodyPart, nameOfBodypart]
+})
+
 export const addCharacter = () => ({
     type: CharactersTypes.ADD_CHARACTER,
     payload: uuidv4()

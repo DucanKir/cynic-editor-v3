@@ -1,11 +1,41 @@
 .editor-dropdown{
     width: 100%;
+    position: relative;
     
     
     .dropdown-button{
         height: 35px;
-        background-color: hotpink;
+        background-color: lightgrey;
         cursor: pointer;
+        text-align: center;
+        padding: 5px 30px;
+
+        &:hover {
+            background-color: rgb(107, 107, 107);
+            color: white;
+        }
+       
+    }
+    .dropdown-contents {
+        width: 100%;
+        position: absolute;
+        height: 555px;
+        background-color: rgba(0, 0, 0, 0.37);
+
+    }
+    .option {
+        text-align: center;
+        background-color: white;
+        height: 40px;
+        padding: 8px;
+        border: 1px solid black;
+        cursor: pointer;
+        font-weight: 600;
+
+        &:hover {
+            background-color: rgb(107, 107, 107);
+            color: white;
+        }
     }
 }
 
@@ -15,4 +45,14 @@
 
 .closed{
     display: none;
+}
+
+h3 {
+    margin: 0;
+}
+
+.down-arrow {
+    font-size: 15px;
+    float: right;
+    line-height: 28px;
 }

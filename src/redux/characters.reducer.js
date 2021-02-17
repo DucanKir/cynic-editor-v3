@@ -1,5 +1,13 @@
 import CharactersTypes from './characters.types';
-import { addCharacter, addDefaultCharacter, removeCharacter, setPreviousCharacter, addCurrentCharacter, replaceCharacter } from './characters.utils';
+import { 
+        addCharacter, 
+        addDefaultCharacter, 
+        removeCharacter, 
+        setPreviousCharacter, 
+        addCurrentCharacter, 
+        replaceCharacter, 
+        updateCharacter 
+    } from './characters.utils';
 
 const INITIAL_STATE = {
     defaultCharacter: {
@@ -71,6 +79,11 @@ const charactersReducer = (state = INITIAL_STATE, action) =>  {
                 ...state,
                 allCharacters: replaceCharacter(state.allCharacters, newCharacter, state.currentCharacterId),
                 currentCharacterId: newCharacter.id
+            };
+        case CharactersTypes.UPDATE_CHARACTER:
+            return {
+                ...state,
+                allCharacters: updateCharacter(state.allCharacters, action.payload, state.currentCharacterId)
             };
         default: 
             return state

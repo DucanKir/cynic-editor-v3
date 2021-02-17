@@ -42,3 +42,12 @@ export const replaceCharacter = (characters, newCharacter, currentCharacterId) =
     newChars[oldCharacterIndex] = newCharacter
     return newChars
 }
+
+export const updateCharacter = (characters, bodyPart, currentCharacterId) => {
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, characters)
+    const oldCharacterIndex = characters.indexOf(characters.find(char => char.id === currentCharacterId))
+    newChars[oldCharacterIndex][bodyPart[1]] = bodyPart[0]
+    return newChars
+}
+

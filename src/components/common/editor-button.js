@@ -12,7 +12,7 @@ const EditorButton = ({url, url2, url3, charList, ...props}) => {
     }
 
     const bodyPartUrls = {
-        backgroundImage: `url("data:image/png;base64,${url}")`
+        backgroundImage: `url("data:image/png;base64,${url}"), url("data:image/png;base64,${url2}"), url("data:image/png;base64,${url3}")`
     }
 
     return(

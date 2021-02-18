@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteCharacter, addCharacter, resetCharacter } from '../../redux/characters.actions';
-import { selectCurrentCharacterId } from '../../redux/characters.selector';
+import { selectAllCharacters, selectCurrentCharacterId } from '../../redux/characters.selector';
 import {createStructuredSelector} from 'reselect';
 
 
@@ -14,28 +14,29 @@ import WarningScreen from '../warning-screen/warning-screen';
 class ControlPanel extends React.Component {
 
     state = {
-        warningOpen: true,
+        warningOpen: false,
         warningText: '',
         warningType: ''
     }
 
     handleWarning = () => {
         const {deleteCharacter, currentCharacterId, resetCharacter} = this.props
-        this.state.warningType == 'reset' && resetCharacter()
-        this.state.warningType == 'delete' && deleteCharacter(currentCharacterId)
+        this.state.warningType === 'reset' && resetCharacter()
+        this.state.warningType === 'delete' && deleteCharacter(currentCharacterId)
         this.setState({ warningOpen: !this.state.warningOpen})
     }
 
     toggleWarning = (type) => {
+        const { allCharacters } = this.props
 
-        type == 'reset' && this.setState({ warningOpen: !this.state.warningOpen, warningText: 'Сбросить все настройки персонажа?', warningType: type})
-        type == 'delete' && this.setState({ warningOpen: !this.state.warningOpen, warningText: 'Хочешь удалить персонажа?', warningType: type})
-        type == '' && this.setState({ warningOpen: !this.state.warningOpen, warningText: '', warningType: ''})
+        type === 'reset' && this.setState({ warningOpen: !this.state.warningOpen, warningText: 'Сбросить все настройки персонажа?', warningType: type})
+        type === 'delete' && allCharacters.length !== 1 && this.setState({ warningOpen: !this.state.warningOpen, warningText: 'Хочешь удалить персонажа?', warningType: type})
+        type === '' && this.setState({ warningOpen: !this.state.warningOpen, warningText: '', warningType: ''})
         
     }
     
     render(){
-        const {deleteCharacter, addCharacter, currentCharacterId, resetCharacter} = this.props
+        const {addCharacter} = this.props
 
         return(
         <div className="control-panel">
@@ -53,6 +54,7 @@ class ControlPanel extends React.Component {
 }
 const mapStateToProps = createStructuredSelector({
     currentCharacterId: selectCurrentCharacterId,
+    allCharacters: selectAllCharacters,
 })
 
 const mapDispatchToProps = dispatch => ({

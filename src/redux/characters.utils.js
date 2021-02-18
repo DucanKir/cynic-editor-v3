@@ -30,7 +30,10 @@ export const removeCharacter = (characters, characterId) => {
 export const setPreviousCharacter = (characters, id) => {
     const currentCharInAllChars = characters.find(char => char.id === id)
     if (characters.length>1) {
-        return characters[characters.indexOf(currentCharInAllChars) -1].id
+        if(characters.indexOf(currentCharInAllChars) !== 0){
+            return characters[characters.indexOf(currentCharInAllChars) -1].id
+        } else return characters[characters.indexOf(currentCharInAllChars) +1].id
+        
     } else return id
     
 }
@@ -48,6 +51,14 @@ export const updateCharacter = (characters, bodyPart, currentCharacterId) => {
     const newChars = Object.assign(copyWithAssign, characters)
     const oldCharacterIndex = characters.indexOf(characters.find(char => char.id === currentCharacterId))
     newChars[oldCharacterIndex][bodyPart[1]] = bodyPart[0]
+    return newChars
+}
+
+export const updatePosition = (characters, bodyPart, currentCharacterId) => {
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, characters)
+    const oldCharacterIndex = characters.indexOf(characters.find(char => char.id === currentCharacterId))
+    newChars[oldCharacterIndex][bodyPart[0]] = bodyPart[1]
     return newChars
 }
 

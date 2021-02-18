@@ -9,7 +9,7 @@ import imagesReducer from './images.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['characters']
+    whitelist: ['']
 
 }
 

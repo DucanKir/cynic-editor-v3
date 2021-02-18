@@ -1,6 +1,11 @@
 .characters-list {
     height: 600px;
     width: 100px;
+    border: 5px solid black;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    
 
     .button{
         width: 70px;
@@ -13,5 +18,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 10px;
     }
 }

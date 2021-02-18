@@ -1,5 +1,17 @@
 .character-container {
-    width: 400px;
-    height: 550px;
+    min-width: 420px;
+    height: 600px;
     position: relative;
+    background-image: url(https://s3.eu-west-2.amazonaws.com/cynic.game.images/Backgr1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: -80px;
+    margin: 0 20px;
+    border: 5px solid black;
+    background-attachment: fixed;
+
+    .body-part {
+        min-width: 100%;
+        height: 100%;
+    }
 }

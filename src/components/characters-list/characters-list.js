@@ -18,6 +18,13 @@ const CharactersList = ({allCharacters, setCurrentCharacter}) => {
                     url={char.head.data}
                     url2={char.eyes.data}
                     url3={char.mouths.data}
+                    url4={char.clothes.data}
+                    url5={char.hair.data}
+                    url6={char.masks.data}
+                    url7={char.glasses.data}
+                    url8={char.beards.data}
+                    url9={char.hats.data}
+                    url10={char.brows.data}
                 />
             )}
         </div>

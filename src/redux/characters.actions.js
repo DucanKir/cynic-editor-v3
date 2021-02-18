@@ -36,3 +36,8 @@ export const deleteCharacter = (character) => ({
     type: CharactersTypes.DELETE_CHARACTER,
     payload: character
 })
+
+export const moveBodyPart = (number, bodyPart) => ({
+    type: CharactersTypes.MOVE_BODY_PART,
+    payload: [number, bodyPart]
+})

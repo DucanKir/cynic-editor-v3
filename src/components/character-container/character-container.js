@@ -14,7 +14,7 @@ class CharacterContainer extends React.Component {
     
     componentDidMount() {
         const { allCharacters, addCharacter} = this.props
-        if (allCharacters.length == 0) {
+        if (allCharacters.length === 0) {
             addCharacter()
         }
         this.setState({isLoading: false})

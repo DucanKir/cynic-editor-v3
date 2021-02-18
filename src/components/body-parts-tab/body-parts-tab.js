@@ -60,10 +60,10 @@ class BodyPartsTab extends React.Component {
                                             <EditorButton
                                                 className={`${entry[0]}Button`} 
                                                 onClick={(e) => updateCharacter(key, [entry[0]])}
-                                                key={key.id}
+                                                key={key.name}
                                                 url={key.data}
                                                 url2={allImages.heads[0].data}
-                                                url3={allImages.body[0].data}
+                                                url3={allImages.clothes[0].data}
 
                                             />
                                         ))

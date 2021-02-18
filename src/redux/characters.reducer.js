@@ -73,9 +73,9 @@ const INITIAL_STATE = {
             "name" : "hair_0",
             "position" : 1
           },
-        eySliderValue: 0,
-        moSliderValue: 0,
-        brSliderValue: 0,
+        eyesSliderValue: 0,
+        mouthsSliderValue: 0,
+        browsSliderValue: 0,
         boSliderValue: 400,  
     },
     currentCharacterId: '',

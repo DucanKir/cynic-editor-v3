@@ -13,9 +13,9 @@ class BodyPartsTab extends React.Component {
     
     state = {
         isLoading: true,
-        eySliderValue: 0,
-        moSliderValue: 0,
-        brSliderValue: 0,
+        eyesSliderValue: 0,
+        mouthsSliderValue: 0,
+        browsSliderValue: 0,
         boSliderValue: 400, 
         groups: {
             face: {
@@ -42,7 +42,7 @@ class BodyPartsTab extends React.Component {
         },}
     }
 
-    handleSliderChange(e) {
+    handleSliderChange = (e) => {
         const {moveBodyPart} = this.props
         moveBodyPart(e.target.value, e.target.id)
 
@@ -50,6 +50,19 @@ class BodyPartsTab extends React.Component {
     
     componentDidMount() {
         this.setState({isLoading: false})
+    }
+
+    setSliderTitle = (groupTitle) => {
+        switch(groupTitle) {
+            case "eyes":
+                return "Положение глаз"
+            case "mouths":
+                return "Положение рта"
+            case "brows":
+                return "Положение бровей"
+            default:
+                return '' 
+        }
     }
 
     setButtons = () => {
@@ -68,14 +81,14 @@ class BodyPartsTab extends React.Component {
                             entry[0] === 'brows' 
                             ?
                             <div className="slider-container">
-                                <p>Положение глаз</p>
+                                <p>{this.setSliderTitle(entry[0])}</p>
                                 <input
                                     type="range"
                                     min="-15"
                                     max="15"
                                     className="slider"
-                                    defaultValue={currentCharacter.eySliderValue}
-                                    id="eySliderValue"
+                                    defaultValue={currentCharacter[`${entry[0]}SliderValue`]}
+                                    id={`${entry[0]}SliderValue`}
                                     step="5"
                                     onChange={(e) => this.handleSliderChange(e)} 
                                 />

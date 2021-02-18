@@ -8,7 +8,7 @@ const BodyPart = ({data, position, name, currentCharacter, categoryName, imagePo
         'clothes_41','clothes_42','clothes_43','clothes_44','clothes_15']
 
     const checker = value => arrayNoHands.includes(value) ? true : false
-    console.log(imagePosition)
+
     return(
         <img 
             className='body-part' 

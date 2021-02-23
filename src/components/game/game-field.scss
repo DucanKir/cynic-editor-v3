@@ -8,5 +8,43 @@
     .container {
         display: flex;
         justify-content: center;
+        position: relative;
+        margin-top: 30px;
+
+       .char-and-scenes-list {
+           position: absolute;
+           top: -45px;
+           margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+
+       }
+       
     }
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+
+        .button {
+            min-width: 30px;
+            width: auto;
+            height: 20px;
+            padding: 0 10px;
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+
+        }
+    }
+    
 }

@@ -81,7 +81,7 @@ class BodyPartsTab extends React.Component {
                             entry[0] === 'brows' 
                             ?
                             <div className="slider-container">
-                                <p>{this.setSliderTitle(entry[0])}</p>
+                                <p className='slider-title'>{this.setSliderTitle(entry[0])}</p>
                                 <input
                                     type="range"
                                     min="-15"

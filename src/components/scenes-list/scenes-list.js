@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import { selectAllCharacters } from '../../redux/characters.selector';
 import {createStructuredSelector} from 'reselect';
 
-import './characters-list.styles.scss';
+import './scenes-list.styles.scss';
 import { setCurrentCharacter } from '../../redux/characters.actions';
 import EditorButton from '../common/editor-button';
 
-const CharactersList = ({allCharacters, setCurrentCharacter, editorLevel, addCharacterToScene}) => {
-    console.log(editorLevel)
+const ScenesList = ({allCharacters, setCurrentCharacter, editorLevel}) => {
     return(
-        <div className={editorLevel ? 'characters-list' : 'characters-list-creator'}>
-            {allCharacters.map(char =>
+        <div className='scenes-list'>
+            {/* {allCharacters.map(char =>
                 <EditorButton 
                     charList
                     onClick={() => setCurrentCharacter(char.id)}
@@ -26,10 +25,8 @@ const CharactersList = ({allCharacters, setCurrentCharacter, editorLevel, addCha
                     url8={char.beards.data}
                     url9={char.hats.data}
                     url10={char.brows.data}
-                    editorLevel={editorLevel}
-                    addCharacterToScene={addCharacterToScene}
                 />
-            )}
+            )} */}
         </div>
 );
 }
@@ -41,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
     setCurrentCharacter: (id) => dispatch(setCurrentCharacter(id)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CharactersList);
+export default connect(mapStateToProps, mapDispatchToProps)(ScenesList);

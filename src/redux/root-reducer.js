@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import charactersReducer from './characters.reducer';
 
 import imagesReducer from './images.reducer';
+import ScenesReducer from './scenes.reducer';
 
 
 const persistConfig = {
@@ -15,7 +16,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     collections: imagesReducer,
-    characters: charactersReducer
+    characters: charactersReducer,
+    scenes: ScenesReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

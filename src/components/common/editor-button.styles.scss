@@ -10,4 +10,30 @@
     justify-content: center;
     align-items: center;
     background-color: white;
+
+    .add-delete-buttons-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        button{
+            background-color: rgba(255, 255, 255, 0.575);
+            width: 20px;
+            line-height: 15px;
+            font-size: 20px;
+            color: red;
+            border: 1px solid black;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            &:hover {
+                background-color: rgb(255, 255, 255);
+            }
+            &.add{
+                color: rgb(39, 148, 57);
+            }
+        }
+    }
 }

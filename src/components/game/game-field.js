@@ -22,8 +22,16 @@ class GameField extends React.Component {
         this.setState({editorLevel: !this.state.editorLevel})
     }
 
-    addCharacterToScene = (char) => {
-        this.setState({charactersOnScene: [...this.state.charactersOnScene, char]})
+    addCharacterToScene = (character) => {
+        const checker = this.state.charactersOnScene.find(char => char.id === character.id)
+        if(!checker) {
+            this.setState({charactersOnScene: [...this.state.charactersOnScene, character]})
+        }
+    }
+
+    removeCharacterFromScene = (charId) => {
+        const newCharList = this.state.charactersOnScene.filter(char => char.id !== charId)
+        this.setState({charactersOnScene: newCharList})
     }
 
     render(){
@@ -38,7 +46,10 @@ class GameField extends React.Component {
                     : 
                     <div className="container">
                         <div className="char-and-scenes-list">  
-                            <CharactersList addCharacterToScene={this.addCharacterToScene}/>
+                            <CharactersList 
+                                addCharacterToScene={this.addCharacterToScene}
+                                removeCharacterFromScene={this.removeCharacterFromScene}
+                                />
                             <ScenesList />
                         </div>
                         <Scene 

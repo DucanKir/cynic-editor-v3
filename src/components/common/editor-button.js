@@ -3,7 +3,7 @@ import React from 'react';
 import './editor-button.styles.scss';
 
 const EditorButton = ({url, url2, url3, url4, url5, url6, url7, 
-    url8, url9, url10, charList, editorLevel, addCharacterToScene, ...props}) => {
+    url8, url9, url10, charList, ...props}) => {
 
     const charlistUrls = {
         backgroundImage: `
@@ -32,17 +32,7 @@ const EditorButton = ({url, url2, url3, url4, url5, url6, url7,
 
     return(
         <div className="editor-button" style={charList ? charlistUrls: bodyPartUrls} {...props}>
-            {
-                !editorLevel && charList? 
-                <div className="add-delete-buttons-container">
-                    <button onClick={() => addCharacterToScene()} className="add">+</button>
-                    <button className="delete">-</button>
-                </div> 
-                : 
-                ""
-
-                
-            }
+            
         </div>
     );
 }

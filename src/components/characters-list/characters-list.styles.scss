@@ -36,11 +36,43 @@
         background-size:280%;
         background-position: -35px -30px;
         border: 3px solid black;
-        margin: 5px;
+        margin: 5px 5px 0 5px;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: white;
+    }
+}
+
+.add-delete-buttons-container {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 999;
+
+    button{
+        background-color: rgb(255, 255, 255);
+        width: 25px;
+        line-height: 15px;
+        font-size: 20px;
+        color: red;
+        border: 1px solid black;
+        cursor: pointer;
+        outline: none;
+        text-align: center;
+        &:hover {
+            background-color: rgb(255, 0, 0);
+            color: white;
+        }
+        &.add{
+            color: rgb(39, 148, 57);
+            &:hover {
+                background-color:rgb(39, 148, 57);
+                color: white;
+            }
+        }
     }
 }

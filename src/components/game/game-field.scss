@@ -24,38 +24,68 @@
        }
        
     }
-    .button-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 10px;
+    .buttons {
+        width: 950px;
+        margin: 0 auto;
 
-        .button {
-            min-width: 30px;
-            width: auto;
-            height: 20px;
-            padding: 0 10px;
-            font-size: 15px;
-            background-color: black;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .button-container {
+            width: 100%;
             display: flex;
-            justify-content: center;
-            text-align: center;
-            
-
+            justify-content: flex-start;
+            padding: 10px;
+    
+            .button {
+                min-width: 30px;
+                width: auto;
+                height: 20px;
+                padding: 0 10px;
+                font-size: 15px;
+                background-color: black;
+                color: white;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                
+    
+            }
         }
     }
     
+    
 }
 
-.slider-container {
-    width: 100%;
+.scene-slider-container {
+    width: 900px;
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    label {
+        text-align: right;
+        clear: both;
+        float:left;
+        margin-right:15px;
+    }
 
     .slider {
+        width: 700px;
+    }
+}
+.text-input-container {
+    width: 900px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    label {
+        text-align: right;
+        clear: both;
+        float:left;
+        margin-right:15px;
+    }
+    .text {
         width: 700px;
     }
 }

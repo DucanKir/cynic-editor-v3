@@ -81,26 +81,39 @@ class GameField extends React.Component {
                         />
                     </div> 
                 }
-                <div className="button-container">
-                        <CustomButton className="button" onClick={() => this.changeLevel()}>
-                            {this.state.editorLevel ? "Перейти к созданию комикса" : "Вернуться к редактору"} 
-                        </CustomButton>
-                </div>
-                { this.state.isLoading ? "loading" :
-                    <div className="slider-container">
+                
+                { !this.state.isLoading && !this.state.editorLevel &&
+                <div>
+                    <div className="scene-slider-container">
                         <label className='slider-title'>Подвинуть персонажа</label>
                         <input
                             type="range"
                             min="0"
-                            max="500"
+                            max="600"
                             className="slider"
                             defaultValue={currentCharacter.position}
-                            // id={`${entry[0]}SliderValue`}
                             step="5"
                             onChange={(e) => this.handleSliderChange(e)} 
                         />
                     </div>
+                    <div className="text-input-container">
+                        <label className='text-title'>Реплика</label>
+                        <textarea
+                            type="text"
+                            className="text"
+                            placeholder="text"
+                            // onChange={(e) => this.handleSliderChange(e)} 
+                        />
+                    </div>
+                </div>
                 }
+                <div className="buttons" >
+                    <div className="button-container">
+                            <CustomButton className="button" onClick={() => this.changeLevel()}>
+                                {this.state.editorLevel ? "Перейти к созданию комикса" : "Вернуться к редактору"} 
+                            </CustomButton>
+                    </div>
+                </div>
             </div>
         );
     }

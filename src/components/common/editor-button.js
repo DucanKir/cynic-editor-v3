@@ -3,7 +3,9 @@ import React from 'react';
 import './editor-button.styles.scss';
 
 const EditorButton = ({url, url2, url3, url4, url5, url6, url7, 
-    url8, url9, url10, charList, ...props}) => {
+    url8, url9, url10, charList, charId, currentCharId,  ...props}) => {
+    
+    const selectedChar = currentCharId === charId ? '3px solid lightgreen' : '3px solid black'
 
     const charlistUrls = {
         backgroundImage: `
@@ -17,8 +19,8 @@ const EditorButton = ({url, url2, url3, url4, url5, url6, url7,
             url("data:image/png;base64,${url2}"), 
             url("data:image/png;base64,${url}"),
             url("data:image/png;base64,${url4}")
-
-            `
+        `,
+        border: selectedChar
     }
 
     const bodyPartUrls = {

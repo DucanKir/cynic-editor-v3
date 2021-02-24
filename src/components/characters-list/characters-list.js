@@ -29,6 +29,9 @@ const CharactersList = ({allCharacters, setCurrentCharacter, editorLevel,
                         url9={char.hats.data}
                         url10={char.brows.data}
                         editorLevel={editorLevel}
+                        charId = {char.id}
+                        currentCharId = {currentCharacter.id}
+
                         
                     />
                     {

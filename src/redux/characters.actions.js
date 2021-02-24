@@ -41,3 +41,8 @@ export const moveBodyPart = (number, bodyPart) => ({
     type: CharactersTypes.MOVE_BODY_PART,
     payload: [number, bodyPart]
 })
+
+export const moveCharacter = (value) => ({
+    type: CharactersTypes.MOVE_CHARACTER,
+    payload: value
+})

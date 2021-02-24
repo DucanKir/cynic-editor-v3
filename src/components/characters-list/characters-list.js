@@ -6,7 +6,6 @@ import {createStructuredSelector} from 'reselect';
 import './characters-list.styles.scss';
 import { setCurrentCharacter } from '../../redux/characters.actions';
 import EditorButton from '../common/editor-button';
-import { removeCharacter } from '../../redux/characters.utils';
 
 const CharactersList = ({allCharacters, setCurrentCharacter, editorLevel, 
     addCharacterToScene, currentCharacter, removeCharacterFromScene}) => {
@@ -30,13 +29,13 @@ const CharactersList = ({allCharacters, setCurrentCharacter, editorLevel,
                         url9={char.hats.data}
                         url10={char.brows.data}
                         editorLevel={editorLevel}
-                        addCharacterToScene={addCharacterToScene}
+                        
                     />
                     {
                         !editorLevel && char.id == currentCharacter.id ? 
                         <div className="add-delete-buttons-container">
-                            <button onClick={() => addCharacterToScene(currentCharacter)} className="add">+</button>
-                            <button onClick={() => removeCharacterFromScene(currentCharacter.id)} className="delete">-</button>
+                            <button onClick={() => addCharacterToScene(char.id)} className="add">+</button>
+                            <button onClick={() => removeCharacterFromScene(char.id)} className="delete">-</button>
                         </div> 
                         : 
                         ""

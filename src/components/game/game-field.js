@@ -1,5 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import { connect } from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import CharacterContainer from  '../character-container/character-container';
 import CharacterEditorPanel from '../character-editor-panel/character-editor-panel';
@@ -9,32 +11,52 @@ import CustomButton from '../common/custom-button';
 
 import './game-field.scss';
 import ScenesList from '../scenes-list/scenes-list';
+import { selectCurrentCharacter } from '../../redux/characters.selector';
+import { moveCharacter } from '../../redux/characters.actions';
 
 class GameField extends React.Component {
 
     state = {
         editorLevel: true,
         charactersOnScene: [],
-        chosenBackground: ''
+        chosenBackground: '',
+        isLoading: true
+    }
+
+    componentDidMount() {
+        this.setState({isLoading: false})
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.charactersOnScene)
     }
 
     changeLevel = () => {
         this.setState({editorLevel: !this.state.editorLevel})
     }
 
-    addCharacterToScene = (character) => {
-        const checker = this.state.charactersOnScene.find(char => char.id === character.id)
+    addCharacterToScene = (characterId) => {
+        const checker = this.state.charactersOnScene.find(char => char === characterId)
         if(!checker) {
-            this.setState({charactersOnScene: [...this.state.charactersOnScene, character]})
+            this.setState({charactersOnScene: [...this.state.charactersOnScene, characterId]})
         }
     }
 
     removeCharacterFromScene = (charId) => {
-        const newCharList = this.state.charactersOnScene.filter(char => char.id !== charId)
+        const newCharList = this.state.charactersOnScene.filter(char => char !== charId)
         this.setState({charactersOnScene: newCharList})
     }
 
+
+    handleSliderChange = (e) => {
+        const {moveCharacter} = this.props
+        moveCharacter(e.target.value)
+    }
+    
+
+
     render(){
+        const {currentCharacter} = this.props
         return(
             <div className="gamefield">
                 {this.state.editorLevel ?
@@ -55,6 +77,7 @@ class GameField extends React.Component {
                         <Scene 
                             characters={this.state.charactersOnScene} 
                             chosenBackground={this.state.chosenBackground}
+
                         />
                     </div> 
                 }
@@ -63,8 +86,32 @@ class GameField extends React.Component {
                             {this.state.editorLevel ? "Перейти к созданию комикса" : "Вернуться к редактору"} 
                         </CustomButton>
                 </div>
+                { this.state.isLoading ? "loading" :
+                    <div className="slider-container">
+                        <label className='slider-title'>Подвинуть персонажа</label>
+                        <input
+                            type="range"
+                            min="0"
+                            max="500"
+                            className="slider"
+                            defaultValue={currentCharacter.position}
+                            // id={`${entry[0]}SliderValue`}
+                            step="5"
+                            onChange={(e) => this.handleSliderChange(e)} 
+                        />
+                    </div>
+                }
             </div>
         );
     }
 }
-export default GameField;
+
+const mapStateToProps = createStructuredSelector({
+    currentCharacter: selectCurrentCharacter,
+}) 
+
+const mapDispatchToProps = dispatch => ({
+    moveCharacter: (value) => dispatch(moveCharacter(value)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameField);

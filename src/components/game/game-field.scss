@@ -49,3 +49,13 @@
     }
     
 }
+
+.slider-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .slider {
+        width: 700px;
+    }
+}

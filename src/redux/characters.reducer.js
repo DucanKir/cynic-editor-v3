@@ -7,7 +7,8 @@ import {
         addCurrentCharacter, 
         replaceCharacter, 
         updateCharacter,
-        updatePosition
+        updatePosition,
+        moveCharacter
     } from './characters.utils';
 
 const INITIAL_STATE = {
@@ -77,6 +78,7 @@ const INITIAL_STATE = {
         mouthsSliderValue: 0,
         browsSliderValue: 0,
         boSliderValue: 400,  
+        position: 0
     },
     currentCharacterId: '',
     allCharacters:[]
@@ -125,6 +127,11 @@ const charactersReducer = (state = INITIAL_STATE, action) =>  {
                 ...state,
                 allCharacters: updatePosition(state.allCharacters, action.payload, state.currentCharacterId)
             };
+            case CharactersTypes.MOVE_CHARACTER:
+                return {
+                    ...state,
+                    allCharacters: moveCharacter(state.allCharacters, state.currentCharacterId, action.payload)
+                };
         
         default: 
             return state

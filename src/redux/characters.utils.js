@@ -62,3 +62,11 @@ export const updatePosition = (characters, bodyPart, currentCharacterId) => {
     return newChars
 }
 
+export const moveCharacter = (characters, currentCharacterId, value) => {
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, characters)
+    const oldCharacterIndex = characters.indexOf(characters.find(char => char.id === currentCharacterId))
+    newChars[oldCharacterIndex].position = value
+    return newChars
+}
+

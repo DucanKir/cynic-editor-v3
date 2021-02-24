@@ -9,16 +9,15 @@ const BodyPart = ({data, position, name, currentCharacter, categoryName, imagePo
 
     const checker = value => arrayNoHands.includes(value) ? true : false
 
+    const margin = charOnScene ? `${currentCharacter.position}px` : 0
+
+    const display = categoryName === 'hands' && checker(currentCharacter.clothes.name) ? 'none' : 'block'
+
     return(
         <img 
             className={charOnScene? 'body-part-scene' : 'body-part'}
             src={`data:image/png;base64, ${data}`} 
-            style={categoryName === 'hands' && checker(currentCharacter.clothes.name)
-            ?
-                {zIndex: position, display: 'none', top: `${imagePosition}px`}
-            :
-                {zIndex: position, display: 'block', top: `${imagePosition}px`}
-            }  
+            style={{zIndex: position, display: display, top: `${imagePosition}px`, marginLeft: margin}} 
             id={name}
         />
     );

@@ -28,7 +28,8 @@ class CharacterContainer extends React.Component {
             <div className="character-container">
                 <ControlPanel />
                 {this.state.isLoading ? "Ща все будет" : Object.keys(currentCharacter).map(key => 
-                    key!=='id' &&  key!=='eyesSliderValue' && key!=='mouthsSliderValue' && key!=='browsSliderValue' && key!=='boSliderValue' ? 
+                    key!=='id' && key !== 'position' && key!=='eyesSliderValue' && 
+                    key!=='mouthsSliderValue' && key!=='browsSliderValue' && key!=='boSliderValue' ? 
                         <BodyPart 
                             key={currentCharacter[key].name} 
                             data={currentCharacter[key].data} 

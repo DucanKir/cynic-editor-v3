@@ -16,15 +16,9 @@ const Scene = ({allBackgrounds, characters, allCharacters}) => {
             charactersOnScene.push(allCharacters[i])
         }
     }
-    console.log(charactersOnScene)
-    // allCharacters.map(charId => {
-    //     // const copyWithAssign =[]
-    //     // const newChars = Object.assign(copyWithAssign, allCharacters)
-    //     charactersOnScene.push(newChars.find(char => char.id = charId))
-    // })
 
     return(
-        <div className="scene" style={{backgroundImage: `url("data:image/png;base64,${allBackgrounds[2].data}")`}}>
+        <div id='capture' className="scene" style={{backgroundImage: `url("data:image/png;base64,${allBackgrounds[2].data}")`}}>
             {charactersOnScene.map(char => (
                 <CharOnScene character={char} characters={charactersOnScene}/>
             ))}

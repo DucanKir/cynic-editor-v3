@@ -1,37 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectAllCharacters } from '../../redux/characters.selector';
+import { selectAllScenes } from '../../redux/scenes.selector';
 import {createStructuredSelector} from 'reselect';
 
 import './scenes-list.styles.scss';
 import { setCurrentCharacter } from '../../redux/characters.actions';
 import EditorButton from '../common/editor-button';
 
-const ScenesList = ({allCharacters, setCurrentCharacter, editorLevel}) => {
+const ScenesList = ({allScenes}) => {
+    console.log(allScenes.scenes)
     return(
         <div className='scenes-list'>
-            {/* {allCharacters.map(char =>
-                <EditorButton 
-                    charList
-                    onClick={() => setCurrentCharacter(char.id)}
-                    key={char.id}
-                    url={char.head.data}
-                    url2={char.eyes.data}
-                    url3={char.mouths.data}
-                    url4={char.clothes.data}
-                    url5={char.hair.data}
-                    url6={char.masks.data}
-                    url7={char.glasses.data}
-                    url8={char.beards.data}
-                    url9={char.hats.data}
-                    url10={char.brows.data}
+            {allScenes.scenes.length > 0 && allScenes.scenes.map(scene =>
+                <img 
+                    src={scene.data}
+                    key={scene.id}
+                    // onClick={() => setCurrentsceneacter(scene.id)}
+                    
                 />
-            )} */}
+            )}
         </div>
 );
 }
 const mapStateToProps = createStructuredSelector({
-    allCharacters: selectAllCharacters
+    allCharacters: selectAllCharacters,
+    allScenes: selectAllScenes
 })
 
 const mapDispatchToProps = dispatch => ({

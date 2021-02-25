@@ -13,11 +13,13 @@ const BodyPart = ({data, position, name, currentCharacter, categoryName, imagePo
 
     const display = categoryName === 'hands' && checker(currentCharacter.clothes.name) ? 'none' : 'block'
 
+    const turned = charOnScene && currentCharacter.turned === true ? 'scaleX(-1)' : ''
+
     return(
         <img 
             className={charOnScene? 'body-part-scene' : 'body-part'}
             src={`data:image/png;base64, ${data}`} 
-            style={{zIndex: position, display: display, top: `${imagePosition}px`, marginLeft: margin}} 
+            style={{zIndex: position, display: display, top: `${imagePosition}px`, marginLeft: margin, transform: turned}} 
             id={name}
         />
     );

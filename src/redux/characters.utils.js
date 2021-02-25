@@ -70,3 +70,21 @@ export const moveCharacter = (characters, currentCharacterId, value) => {
     return newChars
 }
 
+export const turnCharacter = (characters, currentCharacterId) => {
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, characters)
+    const oldCharacterIndex = characters.indexOf(characters.find(char => char.id === currentCharacterId))
+    newChars[oldCharacterIndex].turned = newChars[oldCharacterIndex].turned ? false : true
+    return newChars
+}
+
+export const setText = (characters, currentCharacterId, text) => {
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, characters)
+    const oldCharacterIndex = characters.indexOf(characters.find(char => char.id === currentCharacterId))
+    newChars[oldCharacterIndex].charText = text
+    return newChars
+}
+
+
+

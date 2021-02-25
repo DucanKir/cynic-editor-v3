@@ -1,0 +1,19 @@
+.char-on-scene{
+    position: relative;
+}
+
+.character-text {
+    width: 300px;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.pointer {
+    position: absolute;
+    width: 200px;
+    left: 55px;
+    transform: scaleX(-1);
+}

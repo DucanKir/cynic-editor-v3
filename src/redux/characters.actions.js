@@ -46,3 +46,12 @@ export const moveCharacter = (value) => ({
     type: CharactersTypes.MOVE_CHARACTER,
     payload: value
 })
+
+export const turnCharacter = () => ({
+    type: CharactersTypes.TURN_CHARACTER,
+})
+
+export const setCharacterText = (text) => ({
+    type: CharactersTypes.SET_TEXT,
+    payload: text
+})

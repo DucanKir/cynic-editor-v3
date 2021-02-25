@@ -2,6 +2,8 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { connect } from 'react-redux';
 import {createStructuredSelector} from 'reselect';
+import * as htmlToImage from 'html-to-image';
+import { toPng } from 'html-to-image';
 
 import CharacterContainer from  '../character-container/character-container';
 import CharacterEditorPanel from '../character-editor-panel/character-editor-panel';
@@ -12,7 +14,8 @@ import CustomButton from '../common/custom-button';
 import './game-field.scss';
 import ScenesList from '../scenes-list/scenes-list';
 import { selectCurrentCharacter } from '../../redux/characters.selector';
-import { moveCharacter } from '../../redux/characters.actions';
+import { moveCharacter, turnCharacter, setCharacterText } from '../../redux/characters.actions';
+import { addScene } from '../../redux/scenes.actions';
 
 class GameField extends React.Component {
 
@@ -20,15 +23,12 @@ class GameField extends React.Component {
         editorLevel: true,
         charactersOnScene: [],
         chosenBackground: '',
-        isLoading: true
+        isLoading: true, 
+
     }
 
     componentDidMount() {
         this.setState({isLoading: false})
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.charactersOnScene)
     }
 
     changeLevel = () => {
@@ -52,11 +52,28 @@ class GameField extends React.Component {
         const {moveCharacter} = this.props
         moveCharacter(e.target.value)
     }
+
+    handleTextChange = (e) => {
+       const {setCharacterText} = this.props
+       setCharacterText(e.target.value)
+    }
+
+    saveScene = () => {
+        const {addScene} = this.props
+        let node = document.getElementById('capture');
+        htmlToImage.toPng(node)
+            .then(function (dataUrl) {
+            addScene(dataUrl)
+        })
+        .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+    }
     
 
 
     render(){
-        const {currentCharacter} = this.props
+        const {currentCharacter, turnCharacter} = this.props
         return(
             <div className="gamefield">
                 {this.state.editorLevel ?
@@ -77,42 +94,52 @@ class GameField extends React.Component {
                         <Scene 
                             characters={this.state.charactersOnScene} 
                             chosenBackground={this.state.chosenBackground}
+                            turnedText={this.state.turnedText}
 
                         />
                     </div> 
                 }
-                
-                { !this.state.isLoading && !this.state.editorLevel &&
-                <div>
-                    <div className="scene-slider-container">
-                        <label className='slider-title'>Подвинуть персонажа</label>
-                        <input
-                            type="range"
-                            min="0"
-                            max="600"
-                            className="slider"
-                            defaultValue={currentCharacter.position}
-                            step="5"
-                            onChange={(e) => this.handleSliderChange(e)} 
-                        />
+                <div className='controls'>
+                    <div className="buttons" >
+                        <div className="button-container">
+                                <CustomButton className="button" onClick={() => this.changeLevel()}>
+                                    {this.state.editorLevel ? "Перейти к созданию комикса" : "Вернуться к редактору"} 
+                                </CustomButton>
+                        </div>
                     </div>
-                    <div className="text-input-container">
-                        <label className='text-title'>Реплика</label>
-                        <textarea
-                            type="text"
-                            className="text"
-                            placeholder="text"
-                            // onChange={(e) => this.handleSliderChange(e)} 
-                        />
+                    { !this.state.isLoading && !this.state.editorLevel &&
+                    <div className='controls-on-scene'>
+                        <div className="scene-slider-container">
+                            <label className='slider-title'>Подвинуть персонажа</label>
+                            <input
+                                type="range"
+                                min="0"
+                                max="600"
+                                className="slider"
+                                defaultValue={currentCharacter.position}
+                                step="5"
+                                onChange={(e) => this.handleSliderChange(e)} 
+                            />
+                            <div className="">
+                                <button onClick={() => turnCharacter()}>Повернуть персонажа</button>
+                            </div>
+                        </div>
+                        
+                        <div className="text-input-container">
+                            <textarea
+                                type="text"
+                                className="text"
+                                placeholder="Реплика персонажа..."
+                                maxLength='100' 
+                                onChange={(e) => this.handleTextChange(e)} 
+                            />
+                            
+                        </div>
+                        <div>
+                            <button onClick={() => this.saveScene()}>Сохранить сцену</button>
+                        </div>
                     </div>
-                </div>
-                }
-                <div className="buttons" >
-                    <div className="button-container">
-                            <CustomButton className="button" onClick={() => this.changeLevel()}>
-                                {this.state.editorLevel ? "Перейти к созданию комикса" : "Вернуться к редактору"} 
-                            </CustomButton>
-                    </div>
+                    }
                 </div>
             </div>
         );
@@ -125,6 +152,9 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     moveCharacter: (value) => dispatch(moveCharacter(value)),
+    turnCharacter: () => dispatch(turnCharacter()),
+    setCharacterText: (text) => dispatch(setCharacterText(text)),
+    addScene: (image) => dispatch(addScene(image)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameField);

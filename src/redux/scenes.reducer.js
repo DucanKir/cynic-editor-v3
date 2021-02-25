@@ -2,7 +2,7 @@ import ScenesTypes from './scenes.types';
 import {addScene} from './scenes.utils'
 
 const INITIAL_STATE = {
-    scenes: null
+    scenes: []
 };
 
 const ScenesReducer = (state = INITIAL_STATE, action) =>  {

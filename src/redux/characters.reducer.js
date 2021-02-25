@@ -8,7 +8,9 @@ import {
         replaceCharacter, 
         updateCharacter,
         updatePosition,
-        moveCharacter
+        moveCharacter,
+        turnCharacter,
+        setText
     } from './characters.utils';
 
 const INITIAL_STATE = {
@@ -78,7 +80,9 @@ const INITIAL_STATE = {
         mouthsSliderValue: 0,
         browsSliderValue: 0,
         boSliderValue: 400,  
-        position: 0
+        position: 0,
+        turned: false,
+        charText: ''
     },
     currentCharacterId: '',
     allCharacters:[]
@@ -127,11 +131,22 @@ const charactersReducer = (state = INITIAL_STATE, action) =>  {
                 ...state,
                 allCharacters: updatePosition(state.allCharacters, action.payload, state.currentCharacterId)
             };
-            case CharactersTypes.MOVE_CHARACTER:
-                return {
-                    ...state,
-                    allCharacters: moveCharacter(state.allCharacters, state.currentCharacterId, action.payload)
-                };
+        case CharactersTypes.MOVE_CHARACTER:
+            return {
+                ...state,
+                allCharacters: moveCharacter(state.allCharacters, state.currentCharacterId, action.payload)
+            };
+        case CharactersTypes.TURN_CHARACTER:
+            return {
+                ...state,
+                allCharacters: turnCharacter(state.allCharacters, state.currentCharacterId)
+            };
+        case CharactersTypes.SET_TEXT:
+            return {
+                ...state,
+                allCharacters: setText(state.allCharacters, state.currentCharacterId, action.payload)
+            };
+            
         
         default: 
             return state

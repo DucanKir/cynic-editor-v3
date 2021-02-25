@@ -16,6 +16,7 @@ import { selectCurrentCharacter } from '../../redux/characters.selector';
 import { moveCharacter, turnCharacter, setCharacterText } from '../../redux/characters.actions';
 import { addScene } from '../../redux/scenes.actions';
 import { selectAllScenes } from '../../redux/scenes.selector';
+import ComicsPage from '../comics-page/comics-page';
 
 class GameField extends React.Component {
 
@@ -24,6 +25,7 @@ class GameField extends React.Component {
         charactersOnScene: [],
         chosenBackground: '',
         isLoading: true, 
+        showComics: false
     }
 
     componentDidMount() {
@@ -74,6 +76,10 @@ class GameField extends React.Component {
         .catch(function (error) {
             console.error('oops, something went wrong!', error);
         });
+    }
+
+    toggleShowComics = () => {
+        this.setState({showComics: !this.state.showComics})
     }
     
 
@@ -146,9 +152,13 @@ class GameField extends React.Component {
                         <div>
                             <button onClick={() => this.saveScene()}>Сохранить сцену</button>
                         </div>
+                        <div>
+                            <button onClick={() => this.toggleShowComics()}>Показать комикс</button>
+                        </div>
                     </div>
                     }
                 </div>
+                <ComicsPage toggleShowComics={this.toggleShowComics} scenes={allScenes} showComics={this.state.showComics}/>
             </div>
         );
     }

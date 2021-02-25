@@ -1,4 +1,4 @@
-.warning-screen {
+.comics-screen {
     position: fixed;
     top:50px;
     left: 0;
@@ -7,12 +7,16 @@
     background-color: rgba(0, 0, 0, 0.432);
     z-index: 999999;
 
-    .warning-container {
+    .comics-container {
         background-color: white;
-        width: 300px;
-        height: 200px;
+        width: 800px;
         padding: 20px;
-        margin: 200px auto;
+        margin: 0 auto;
+        overflow: scroll;
+
+        .comics-scene{
+            width: 760px;
+        }
     }
 
     .buttons-container {
@@ -28,12 +32,6 @@
             border-radius: 0;
             border: none;
         }
-    }
-
-    .warning-text {
-        font-size: 20px;
-        text-align: center;
-        margin-bottom: 50px;
     }
 
 }

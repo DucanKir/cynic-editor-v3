@@ -3,13 +3,35 @@
     width: 460px;
     border: 5px solid black;
     display: flex;
+    position: relative;
     
 }
 
 .scene-mini {
-    height: 50px;
+    height: 45px;
     width: 54px;
     display: block;
-    margin: 5px;
+    margin: 5px 5px 0 5px;
     cursor: pointer;
+}
+
+.delete-button {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    cursor: pointer;
+    outline: none;
+    width: 20px;
+    align-self: center;
+    position: absolute;
+    top:40px;
+
+    &:hover {
+        background-color: rgb(255, 0, 0);
+        color: white;
+    }
+}
+
+.mini-scene-container {
+    display: flex;
+    flex-direction: column;
 }

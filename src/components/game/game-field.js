@@ -2,8 +2,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { connect } from 'react-redux';
 import {createStructuredSelector} from 'reselect';
-import * as htmlToImage from 'html-to-image';
-import { toPng } from 'html-to-image';
+import domtoimage from 'dom-to-image';
 
 import CharacterContainer from  '../character-container/character-container';
 import CharacterEditorPanel from '../character-editor-panel/character-editor-panel';
@@ -25,7 +24,6 @@ class GameField extends React.Component {
         charactersOnScene: [],
         chosenBackground: '',
         isLoading: true, 
-
     }
 
     componentDidMount() {
@@ -62,13 +60,20 @@ class GameField extends React.Component {
     saveScene = () => {
         const {addScene} = this.props
         let node = document.getElementById('capture');
-        htmlToImage.toPng(node)
-            .then(function (dataUrl) {
+    //     htmlToImage.toPng(node)
+    //         .then(function (dataUrl) {
+    //         addScene(dataUrl)
+    //     })
+    //     .catch(function (error) {
+    //     console.error('oops, something went wrong!', error);
+    //   });
+      domtoimage.toPng(node)
+        .then(function (dataUrl) {
             addScene(dataUrl)
         })
         .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
+            console.error('oops, something went wrong!', error);
+        });
     }
     
 

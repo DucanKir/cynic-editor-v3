@@ -3,8 +3,13 @@
     width: 460px;
     border: 5px solid black;
     display: flex;
+    
 }
 
 .scene-mini {
-    height: 150px;
+    height: 50px;
+    width: 54px;
+    display: block;
+    margin: 5px;
+    cursor: pointer;
 }

@@ -13,7 +13,8 @@ const ScenesList = ({allScenes}) => {
     return(
         <div className='scenes-list'>
             {allScenes.scenes.length > 0 && allScenes.scenes.map(scene =>
-                <img 
+                <img
+                    className='scene-mini' 
                     src={scene.data}
                     key={scene.id}
                     // onClick={() => setCurrentsceneacter(scene.id)}

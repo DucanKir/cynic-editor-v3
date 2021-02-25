@@ -16,6 +16,7 @@ import ScenesList from '../scenes-list/scenes-list';
 import { selectCurrentCharacter } from '../../redux/characters.selector';
 import { moveCharacter, turnCharacter, setCharacterText } from '../../redux/characters.actions';
 import { addScene } from '../../redux/scenes.actions';
+import { selectAllScenes } from '../../redux/scenes.selector';
 
 class GameField extends React.Component {
 
@@ -73,7 +74,7 @@ class GameField extends React.Component {
 
 
     render(){
-        const {currentCharacter, turnCharacter} = this.props
+        const {currentCharacter, turnCharacter, allScenes} = this.props
         return(
             <div className="gamefield">
                 {this.state.editorLevel ?
@@ -91,12 +92,14 @@ class GameField extends React.Component {
                                 />
                             <ScenesList />
                         </div>
-                        <Scene 
-                            characters={this.state.charactersOnScene} 
-                            chosenBackground={this.state.chosenBackground}
-                            turnedText={this.state.turnedText}
+                        <div className="scene-container">
+                            <Scene 
+                                characters={this.state.charactersOnScene} 
+                                chosenBackground={this.state.chosenBackground}
+                                turnedText={this.state.turnedText}
 
-                        />
+                            />
+                        </div>
                     </div> 
                 }
                 <div className='controls'>
@@ -148,6 +151,7 @@ class GameField extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
     currentCharacter: selectCurrentCharacter,
+    allScenes: selectAllScenes
 }) 
 
 const mapDispatchToProps = dispatch => ({

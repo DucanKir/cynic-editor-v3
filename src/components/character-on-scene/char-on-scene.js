@@ -3,7 +3,7 @@ import BodyPart from '../common/body-part';
 
 import './char-on-scene.styles.scss'
 
-const CharOnScene = ({character}) => {
+const CharOnScene = ({character, textcolor}) => {
 
     const pointerPosition = () => {
         if (character.charText.length > 90){
@@ -22,7 +22,7 @@ const CharOnScene = ({character}) => {
         <div className='char-on-scene'>
             <div 
                 className='character-text' 
-                style={{marginLeft: `${character.position}px`}}
+                style={{marginLeft: `${character.position}px`, color: textcolor}}
             >
                 {character.charText}
             </div>

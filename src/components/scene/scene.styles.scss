@@ -10,3 +10,15 @@
         width: 800px; 
     }
 }
+
+.additional {
+    width: 950px;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 9999999;
+}

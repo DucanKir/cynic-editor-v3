@@ -18,6 +18,7 @@ import { moveCharacter, turnCharacter, setCharacterText } from '../../redux/char
 import { addScene } from '../../redux/scenes.actions';
 import { selectAllScenes } from '../../redux/scenes.selector';
 import ComicsPage from '../comics-page/comics-page';
+import { selectBackgrounds } from '../../redux/images.selector';
 
 class GameField extends React.Component {
 
@@ -27,7 +28,9 @@ class GameField extends React.Component {
         chosenBackground: '',
         isLoading: true, 
         showComics: false,
-        url: ''
+        url: '',
+        selectedBackground: '',
+        textcolor: 'black'
     }
 
     componentDidMount() {
@@ -72,11 +75,25 @@ class GameField extends React.Component {
                 console.error('oops, something went wrong!', error);
             });
     }
-    
+
+    chooseBackground = (background) => {
+        const {allBackgrounds} = this.props
+        if(background.position === 2 ) {
+            background.additional = allBackgrounds.find(backgr => backgr.position === 20)
+        } else if (background.position === 3 ){
+            background.additional = allBackgrounds.find(backgr => backgr.position === 30)
+        } 
+        console.log(background)
+        this.setState({chosenBackground: background})
+    }
+
+    changeTextColor = (color) => {
+        this.setState({textcolor: color})
+    }
 
 
     render(){
-        const {currentCharacter, turnCharacter, allScenes} = this.props
+        const {currentCharacter, turnCharacter, allScenes, allBackgrounds} = this.props
         return(
             <div className="gamefield">
                 {this.state.editorLevel ?
@@ -98,6 +115,8 @@ class GameField extends React.Component {
                             <Scene 
                                 characters={this.state.charactersOnScene} 
                                 chosenBackground={this.state.chosenBackground}
+                                textcolor={this.state.textcolor}
+                               
                             />
                         </div>
                     </div> 
@@ -136,8 +155,14 @@ class GameField extends React.Component {
                                     maxLength='100' 
                                     onChange={(e) => this.handleTextChange(e)} 
                                 />
-                                
+                                <div className='options-container'>
+                                    <input type="radio" id="black" name="gender" value="black" onClick={() => this.changeTextColor('black')}/>
+                                    <label for="black">Черный</label><br/>
+                                    <input type="radio" id="white" name="gender" value="white" onClick={() => this.changeTextColor('white')}/>
+                                    <label for="white">Белый</label>
+                                </div>
                             </div>
+                            
                             <div>
                                 <div>
                                     <button className='editor-bitton' onClick={() => this.saveScene()}>Сохранить сцену</button>
@@ -146,6 +171,13 @@ class GameField extends React.Component {
                                     <Link to="/download" className={allScenes.scenes.length ? 'editor-bitton' : 'disabled'}>
                                         Показать и скачать результат
                                     </Link>
+                                </div>
+                                <div>
+                                    {
+                                        allBackgrounds.map(backgr => (
+                                            <img className='mini-backgrounds' src={`data:image/png;base64,${backgr.data}`} onClick={() => this.chooseBackground(backgr)}/>
+                                        ))
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -159,7 +191,8 @@ class GameField extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
     currentCharacter: selectCurrentCharacter,
-    allScenes: selectAllScenes
+    allScenes: selectAllScenes,
+    allBackgrounds: selectBackgrounds
 }) 
 
 const mapDispatchToProps = dispatch => ({

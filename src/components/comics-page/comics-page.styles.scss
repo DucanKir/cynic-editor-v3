@@ -6,22 +6,24 @@
     height: 95vh;
     background-color: rgba(0, 0, 0, 0.432);
     z-index: 999999;
+    overflow: scroll;
 
     .comics-container {
         background-color: white;
-        width: 800px;
+        width: 940px;
         padding: 20px;
         margin: 0 auto;
-        overflow: scroll;
 
         .comics-scene{
-            width: 760px;
+            width: 900px;
+            margin-bottom: -10px;
         }
     }
 
     .buttons-container {
         display: flex;
         justify-content: space-around;
+        margin-bottom: 20px;
 
         button {
             width: 100px;
@@ -34,4 +36,20 @@
         }
     }
 
+}
+
+.result-button {
+    min-width: 30px;
+    width: auto;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
 }

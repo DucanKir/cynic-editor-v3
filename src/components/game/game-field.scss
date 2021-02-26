@@ -21,6 +21,11 @@
             right: 0;
             display: flex;
             justify-content: space-between;
+            @media only screen and (max-width: 900px) {
+                width: 800px;
+                left: 5px;
+                margin-left: -25px;
+            }
 
        }
        
@@ -36,19 +41,28 @@
     display: flex;
     margin: 0 auto;
     margin-top: 10px;
+    @media only screen and (max-width: 900px) {
+        width: 600px;
+    }
 
     .slider {
         width: 300px;
         margin-left: 15px;
         margin-right: 30px;
+        @media only screen and (max-width: 900px) {
+            width: 200px;
+        }
     }
 }
 .text-input-container {
-    width: 300px;
+    width: 330px;
     height: 50px;
     display: flex;
-
+    margin-right: 40px;
     margin-top: 10px;
+    @media only screen and (max-width: 900px) {
+        width: 200px;
+    }
 
     .text {
         width: 700px;
@@ -59,6 +73,9 @@
     display: flex;
     width: 950px;
     margin:  0 auto;
+    @media only screen and (max-width: 900px) {
+        width: 800px;
+    }
 }
 
 .controls-on-scene {
@@ -68,12 +85,16 @@
 .buttons {
     margin-right: 70px;
 
+    @media only screen and (max-width: 900px) {
+        margin-right: 5px;
+    }
+
     .button-container {
         width: 100%;
         display: flex;
         justify-content: flex-start;
         padding: 10px;
-
+       
         .button {
             min-width: 30px;
             width: auto;
@@ -91,4 +112,48 @@
 
         }
     }
+}
+
+.editor-bitton {
+    min-width: 30px;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.buttons-and-text-container {
+    display: flex;
+}
+
+.disabled {
+    
+    pointer-events: none;
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+
+    min-width: 30px;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    background-color: black;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
 }

@@ -8,9 +8,6 @@ import GameContainer from '../game/game-container'
 
 class Home extends React.Component {
 
-  componentDidMount(){
-    
-  }
 
   render(){
     return (

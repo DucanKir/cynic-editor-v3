@@ -20,7 +20,7 @@ const Scene = ({allBackgrounds, characters, allCharacters}) => {
     return(
         <div id='capture' className="scene" style={{backgroundImage: `url("data:image/png;base64,${allBackgrounds[2].data}")`}}>
             {charactersOnScene.map(char => (
-                <CharOnScene character={char} characters={charactersOnScene}/>
+                <CharOnScene key={char.id} character={char} characters={charactersOnScene}/>
             ))}
         </div>
     );

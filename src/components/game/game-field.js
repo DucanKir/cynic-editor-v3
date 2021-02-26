@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import domtoimage from 'dom-to-image';
+import { Link, withRouter } from 'react-router-dom'
 
 import CharacterContainer from  '../character-container/character-container';
 import CharacterEditorPanel from '../character-editor-panel/character-editor-panel';
@@ -25,7 +26,8 @@ class GameField extends React.Component {
         charactersOnScene: [],
         chosenBackground: '',
         isLoading: true, 
-        showComics: false
+        showComics: false,
+        url: ''
     }
 
     componentDidMount() {
@@ -62,24 +64,13 @@ class GameField extends React.Component {
     saveScene = () => {
         const {addScene} = this.props
         let node = document.getElementById('capture');
-    //     htmlToImage.toPng(node)
-    //         .then(function (dataUrl) {
-    //         addScene(dataUrl)
-    //     })
-    //     .catch(function (error) {
-    //     console.error('oops, something went wrong!', error);
-    //   });
-      domtoimage.toPng(node)
-        .then(function (dataUrl) {
-            addScene(dataUrl)
-        })
-        .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-        });
-    }
-
-    toggleShowComics = () => {
-        this.setState({showComics: !this.state.showComics})
+        domtoimage.toPng(node)
+            .then(function (dataUrl) {
+                addScene(dataUrl)
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
     }
     
 
@@ -107,8 +98,6 @@ class GameField extends React.Component {
                             <Scene 
                                 characters={this.state.charactersOnScene} 
                                 chosenBackground={this.state.chosenBackground}
-                                turnedText={this.state.turnedText}
-
                             />
                         </div>
                     </div> 
@@ -138,27 +127,31 @@ class GameField extends React.Component {
                                 <button onClick={() => turnCharacter()}>Повернуть персонажа</button>
                             </div>
                         </div>
-                        
-                        <div className="text-input-container">
-                            <textarea
-                                type="text"
-                                className="text"
-                                placeholder="Реплика персонажа..."
-                                maxLength='100' 
-                                onChange={(e) => this.handleTextChange(e)} 
-                            />
-                            
-                        </div>
-                        <div>
-                            <button onClick={() => this.saveScene()}>Сохранить сцену</button>
-                        </div>
-                        <div>
-                            <button onClick={() => this.toggleShowComics()}>Показать комикс</button>
+                        <div className='buttons-and-text-container'>
+                            <div className="text-input-container">
+                                <textarea
+                                    type="text"
+                                    className="text"
+                                    placeholder="Реплика персонажа..."
+                                    maxLength='100' 
+                                    onChange={(e) => this.handleTextChange(e)} 
+                                />
+                                
+                            </div>
+                            <div>
+                                <div>
+                                    <button className='editor-bitton' onClick={() => this.saveScene()}>Сохранить сцену</button>
+                                </div>
+                                <div>
+                                    <Link to="/download" className={allScenes.scenes.length ? 'editor-bitton' : 'disabled'}>
+                                        Показать и скачать результат
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     }
                 </div>
-                <ComicsPage toggleShowComics={this.toggleShowComics} scenes={allScenes} showComics={this.state.showComics}/>
             </div>
         );
     }
@@ -176,4 +169,4 @@ const mapDispatchToProps = dispatch => ({
     addScene: (image) => dispatch(addScene(image)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameField);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(GameField));

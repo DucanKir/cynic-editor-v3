@@ -8,7 +8,8 @@ import LoadingScreen from '../loading-screen/loading-screen.component';
 import GameField from './game-field'
 
 import './game-container.scss'
-import { selectCurrentCharacterId } from '../../redux/characters.selector';
+import { selectAllCharacters, selectCurrentCharacterId } from '../../redux/characters.selector';
+import { selectAllImages } from '../../redux/images.selector';
 
 const GameFieldWithLoadingScreen = LoadingScreen(GameField)
 
@@ -41,16 +42,18 @@ class GameContainer extends React.Component{
     
     render(){
         const {loading} = this.state
+        const {images} =this.props
         return(
             
             <div className="game-container">
-                <GameFieldWithLoadingScreen isLoading={loading} startGame={this.startGame}/>
+                <GameFieldWithLoadingScreen isLoading={loading} startGame={this.startGame} images={images}/>
             </div>
         )
     }
 }
 const mapStateToProps = createStructuredSelector({
     currentCharacterId: selectCurrentCharacterId,
+    images: selectAllImages
 }) 
 
 const mapDispatchToProps = dispatch => ({

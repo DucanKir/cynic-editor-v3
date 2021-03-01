@@ -170,7 +170,7 @@ class GameField extends React.Component {
                                 <button className="editor-bitton" onClick={() => this.toggleBackgrDropdown()}>
                                     Выбрать фон <span className='up-btn'>&#x25B2;</span>
                                 </button>
-                                <div className={this.state.dropDownOpen ? 'backgr-dropdown-contents open' : 'backgr-dropdown-contents closed'}>
+                                <div className={this.state.dropDownOpen ? 'backgr-dropdown-contents open-bckg' : 'backgr-dropdown-contents closed-bckg'}>
                                     {
                                         allBackgrounds.map(backgr => (
                                             backgr.name !== 'backgr_10_1' &&

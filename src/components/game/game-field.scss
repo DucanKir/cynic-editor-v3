@@ -37,18 +37,20 @@
 }
 
 .scene-slider-container {
-    width: 900px;
+    width: 400px;
     display: flex;
-    margin: 0 auto;
     margin-top: 10px;
     @media only screen and (max-width: 900px) {
         width: 600px;
     }
+    .slider-title {
+        font-size: 14px ;
+    }
 
     .slider {
-        width: 300px;
-        margin-left: 15px;
-        margin-right: 30px;
+        width: 230px;
+        margin-left: 5px;
+        margin-right: 20px;
         @media only screen and (max-width: 900px) {
             width: 200px;
         }
@@ -65,10 +67,12 @@
     }
     .options-container{
         width:90px;
+        font-size: 14px;
     }
 
     .text {
         width: 300px;
+        margin-right: 20px;
     }
 }
 
@@ -82,7 +86,8 @@
 }
 
 .controls-on-scene {
-    width: 70%
+    width: 70%;
+    display: flex;
 }
 
 .buttons {
@@ -163,4 +168,45 @@
 
 .mini-backgrounds {
     width: 100px;
+    cursor: pointer;
 }
+
+.open{
+    display: flex;
+}
+
+.closed{
+    display: none;
+}
+
+.backgr-dropdown-contents {
+    position: absolute;
+    width: 306px;
+    top: -238px;
+    left: -2px;
+    flex-wrap: wrap;
+    background-color: rgba(255, 255, 255, 0.753);
+    border: 3px solid black;
+}
+
+.backgr-deropdown-container {
+    position: relative;
+    
+    z-index: 999999999;
+}
+
+.backgr-deropdown-toggle {
+    width: 300px;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+

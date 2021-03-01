@@ -1,8 +1,18 @@
 import { createSelector } from 'reselect';
 
-const selectCharacters = state => state.scenes;
+const selectScenes = state => state.scenes;
 
 export const selectAllScenes = createSelector(
-    [selectCharacters],
+    [selectScenes],
     scenes => scenes
   );
+
+export const selectCharsOnScene = createSelector(
+  [selectScenes],
+  scenes => scenes.charsOnScene
+);
+
+export const selectCurrentBackground = createSelector(
+  [selectScenes],
+  scenes => scenes.chosenBackground
+);

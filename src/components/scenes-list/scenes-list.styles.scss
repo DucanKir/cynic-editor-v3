@@ -35,3 +35,42 @@
     display: flex;
     flex-direction: column;
 }
+
+.preview {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top:50px;
+    left: 0;
+    width: 100vw;
+    height: 95vh;
+    background-color: #ffffffde;
+    z-index: 9999999999;
+    
+    button {
+        width: 100px;
+        height: 30px;
+        font-size: 16px;
+        background-color: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        outline: none;
+    }
+
+    img {
+       width: 800px;
+       height: 450px;
+    }
+}
+
+.closed-preview {
+    display: none;
+
+    
+}

@@ -1,8 +1,10 @@
 import ScenesTypes from './scenes.types';
-import {addScene, deleteScene} from './scenes.utils'
+import {addScene, deleteScene, addChar, deleteChar} from './scenes.utils'
 
 const INITIAL_STATE = {
-    scenes: []
+    scenes: [],
+    charsOnScene: [],
+    chosenBackground: null
 };
 
 const ScenesReducer = (state = INITIAL_STATE, action) =>  {
@@ -17,6 +19,21 @@ const ScenesReducer = (state = INITIAL_STATE, action) =>  {
             return {
                 ...state,
                 scenes: deleteScene(state.scenes, action.payload)
+            }
+        case ScenesTypes.ADD_CHAR_TO_SCENE:
+            return {
+                ...state,
+                charsOnScene: addChar(state.charsOnScene, action.payload)
+            }
+        case ScenesTypes.DELETE_CHAR_FROM_SCENE:
+            return {
+                ...state,
+                charsOnScene: deleteChar(state.charsOnScene, action.payload)
+            }
+        case ScenesTypes.SET_BACKGROUND:
+            return {
+                ...state,
+                chosenBackground: action.payload
             }
         default: 
         return state;

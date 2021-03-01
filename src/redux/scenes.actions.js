@@ -16,3 +16,18 @@ export const deleteScene = (imageId) => ({
     type: ScenesTypes.DELETE_SCENE,
     payload: imageId
 })
+
+export const addCharToScene = (imageId) => ({
+    type: ScenesTypes.ADD_CHAR_TO_SCENE,
+    payload: imageId
+})
+
+export const deleteCharFromScene = (imageId) => ({
+    type: ScenesTypes.DELETE_CHAR_FROM_SCENE,
+    payload: imageId
+})
+
+export const setBackground = (imageId) => ({
+    type: ScenesTypes.SET_BACKGROUND,
+    payload: imageId
+})

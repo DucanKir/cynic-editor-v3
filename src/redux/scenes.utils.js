@@ -14,5 +14,19 @@ export const addScene = (scenes, newScene) => {
 }
 
 export const deleteScene = (scenes, sceneId) => {
-    return scenes.filter(char => char.id !== sceneId)
+    return scenes.filter(scene => scene.id !== sceneId)
+}
+
+export const addChar = (chars, charId) => {
+    const copyWithAssign =[]
+    const newChars = Object.assign(copyWithAssign, chars)
+    const checker = newChars.find(char => char === charId)
+    if(!checker) {
+        newChars.push(charId)
+        return newChars
+    } else return chars
+}
+
+export const deleteChar = (chars, charId) => {
+    return chars.filter(char => char.id !== charId)
 }

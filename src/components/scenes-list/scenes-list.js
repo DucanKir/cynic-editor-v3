@@ -12,7 +12,9 @@ import WarningScreen from '../warning-screen/warning-screen';
 class ScenesList extends React.Component {
 
     state ={
-        warningOpen: false
+        warningOpen: false,
+        selectetPreview: null,
+        showPreview: false
 
     }
 
@@ -26,6 +28,15 @@ class ScenesList extends React.Component {
         this.setState({ warningOpen: !this.state.warningOpen, currentScene: id})
         
     }
+    showScene = (id) => {
+        const {allScenes} = this.props
+        const scene = allScenes.scenes.find(scene => scene.id === id)
+        this.setState({selectetPreview: scene.data, showPreview: true})
+    }
+
+    closePreview = () => {
+        this.setState({showPreview: false})
+    }
     
     render() {
         const {allScenes, deleteScene} = this.props
@@ -37,7 +48,7 @@ class ScenesList extends React.Component {
                         className='scene-mini' 
                         src={scene.data}
                         key={scene.id}
-                        // onClick={() => setCurrentsceneacter(scene.id)}
+                        onClick={() => this.showScene(scene.id)}
                         
                     />
                     <button className="delete-button" onClick={() => this.toggleWarning(scene.id)}>x</button>
@@ -49,6 +60,10 @@ class ScenesList extends React.Component {
                     handleWarning={this.handleWarning}
                     toggleWarning={this.toggleWarning}
                 />
+                <div className={this.state.showPreview ? "preview" : "closed-preview"}>
+                    <img src={this.state.selectetPreview}/>
+                    <button onClick={this.closePreview}>Закрыть</button>
+                </div>
             </div>
 );}
 }

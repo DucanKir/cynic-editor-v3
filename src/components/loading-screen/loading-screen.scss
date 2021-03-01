@@ -12,6 +12,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     
+    @media only screen and (max-width: 900px) {
+      width: 400px;
+      top: 0;
+      left: 0;
+      transform: unset;
+  }
+    
     .splashtext {
         position: absolute;
         top: 70%;
@@ -24,13 +31,27 @@
         position: absolute;
         top: 60%;
         left: 75%;
+        @media only screen and (max-width: 900px) {
+          
+          top: 50%;
+          left: 60%;
+          
+      }
       }
 
       .spoiler {
         font-size: 12px;
         position: absolute;
         top: 62%;
-        left: 30%
+        left: 30%;
+
+        @media only screen and (max-width: 900px) {
+          
+          top: 70%;
+          left: 15px;
+          
+      }
+        
       }
 
       .startButton {
@@ -43,6 +64,13 @@
         background-color: white;
         border: 3px solid black;
         cursor: pointer;
+
+        @media only screen and (max-width: 900px) {
+          
+          top: 80%;
+          left: 30%;
+          
+      }
       }
 
       .loading {

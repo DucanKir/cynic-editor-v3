@@ -10,7 +10,7 @@ import ScenesReducer from './scenes.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['']
+    whitelist: ['characters', 'scenes']
 
 }
 

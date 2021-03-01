@@ -28,5 +28,6 @@ export const addChar = (chars, charId) => {
 }
 
 export const deleteChar = (chars, charId) => {
-    return chars.filter(char => char.id !== charId)
+    console.log(chars)
+    return chars.filter(char => char !== charId)
 }

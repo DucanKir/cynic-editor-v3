@@ -6,11 +6,12 @@ import './char-on-scene.styles.scss'
 const CharOnScene = ({character, textcolor}) => {
 
     const pointerPosition = () => {
+        
         if (character.charText.length > 90){
              return '110px'
         } else if (character.charText.length > 50) {
             return '90px'
-        } else if (character.charText.length > 30) {
+        } else if (character.charText.length > 23) {
              return '70px'
          } else return '50px'
          
@@ -23,6 +24,7 @@ const CharOnScene = ({character, textcolor}) => {
             <div 
                 className='character-text' 
                 style={{marginLeft: `${character.position}px`, color: textcolor}}
+                id='text'
             >
                 {character.charText}
             </div>
